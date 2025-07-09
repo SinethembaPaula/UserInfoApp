@@ -12,12 +12,17 @@ namespace UserInfoApp.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Explicitly map People to table Person
+            modelBuilder.Entity<Person>().ToTable("Person");
+            modelBuilder.Entity<Info>().ToTable("Info");
+
+            modelBuilder.Entity<Info>()
+                .HasKey(i => i.PersonId);
+
             modelBuilder.Entity<Person>()
                 .HasOne(p => p.Info)
                 .WithOne(i => i.Person)
                 .HasForeignKey<Info>(i => i.PersonId);
-
-            // Optional: seed data for testing
         }
     }
 }
