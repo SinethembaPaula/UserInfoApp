@@ -1,19 +1,24 @@
-# User Info App - Deployment Instructions
+## How to Run
 
-1. Restore Database
+1. Restore the database:
    - Open SQL Server Management Studio.
    - Right-click Databases > Restore Database...
-   - Select 'Device', add `UserInfoDb.bak` from the /Database folder.
-   - Restore.
+   - Select Device, add /Database/UserInfoDb.bak, and restore.
 
-2. Update the connection string in `appsettings.json` to match your SQL Server.
+2. Update `appsettings.json` in the Web project with your SQL Server details.
 
-3. Open the solution in Visual Studio and Build.
+3. Open the solution in Visual Studio.
+4. Build and run the project.
 
-4. Run the project (`UserInfoApp.Web` as Startup).
+## Test Account
 
-5. Log in with:
-   Username: testuser
-   Password: Test@123
+Username: testuser  
+Password: Test@123
 
-6. See /Screenshots for expected UI.
+## Screenshots
+
+See /Screenshots/ folder.
+
+## Notes
+
+- For questions, contact Sinethemba Paula (0677134214, teepaula6@gmail.com)
