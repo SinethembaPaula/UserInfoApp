@@ -1,0 +1,29 @@
+﻿@model UserInfoApp.Web.ViewModels.LoginViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Login";
+}
+<div class="min-vh-100 d-flex align-items-center justify-content-center">
+    <div class="card shadow-lg p-4" style="min-width: 340px; max-width: 380px; width:100%">
+        <h2 class="mb-4 text-center fw-bold">Login</h2>
+        <form method="post" asp-action="Login" autocomplete="off">
+            <div class="mb-3">
+                <label asp-for="Username" class="form-label"></label>
+                <input asp-for="Username" class="form-control" placeholder="Username" />
+                <span asp-validation-for="Username" class="text-danger small"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" type="password" class="form-control" placeholder="Password" />
+                <span asp-validation-for="Password" class="text-danger small"></span>
+            </div>
+            @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+            {
+                <div class="alert alert-danger py-2">@Model.ErrorMessage</div>
+            }
+            <div class="d-grid mt-3">
+                <button class="btn btn-primary btn-lg shadow-sm" type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
