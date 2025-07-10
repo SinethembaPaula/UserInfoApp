@@ -14,7 +14,15 @@ namespace UserInfoApp.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login() => View(new LoginViewModel());
+        public IActionResult Login()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId != null)
+            {
+                return RedirectToAction("Index", "Info");
+            }
+            return View(new LoginViewModel());
+        }
 
         [HttpPost]
         public IActionResult Login(LoginViewModel model)

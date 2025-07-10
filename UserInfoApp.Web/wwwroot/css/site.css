@@ -1,22 +1,69 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
-  margin-bottom: 60px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #dbeafe 0%, #2563eb 100%);
+}
+
+.card {
+    border-radius: 2rem;
+    box-shadow: 0 4px 24px rgba(37,99,235,0.09), 0 1.5px 8px rgba(0,0,0,0.06);
+    background: #fff;
+}
+
+.form-label {
+    color: #2563eb;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, #2563eb 60%, #38bdf8 100%);
+    border: none;
+}
+
+    .btn-primary:hover {
+        background: linear-gradient(90deg, #38bdf8 20%, #2563eb 100%);
+    }
+
+.alert-danger {
+    background: #fee2e2;
+    border-color: #fecaca;
+    color: #b91c1c;
+    border-radius: 0.75rem;
+}
+
+.btn-success {
+    background: linear-gradient(90deg, #22d3ee 60%, #2563eb 100%);
+    border: none;
+    color: #fff;
+}
+
+    .btn-success:hover {
+        background: linear-gradient(90deg, #2563eb 30%, #22d3ee 100%);
+    }
+
+.btn-warning {
+    background: #fbbf24;
+    border: none;
+    color: #78350f;
+    font-weight: 600;
+}
+
+.btn-outline-secondary {
+    border-color: #2563eb;
+    color: #2563eb;
+}
+
+    .btn-outline-secondary:hover {
+        background: #2563eb;
+        color: #fff;
+    }
+
+dialog {
+    border-radius: 1rem;
+    border: none;
+    box-shadow: 0 8px 32px rgba(37,99,235,0.11);
+}
+
+h2 {
+    color: #2563eb;
+    font-weight: 700;
 }

@@ -1,0 +1,97 @@
+﻿@model UserInfoApp.Web.ViewModels.InfoViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "User Info";
+}
+<div class="min-vh-100 d-flex align-items-center justify-content-center">
+    <div class="card shadow-lg p-4 w-100" style="max-width: 600px;">
+        <h2 class="mb-4 text-center">Welcome, @Model.Name @Model.Surname</h2>
+        <form id="infoForm" autocomplete="off">
+            <input type="hidden" asp-for="PersonId" />
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Tell No</label>
+                    <input asp-for="TellNo" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Cell No</label>
+                    <input asp-for="CellNo" class="form-control" />
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Address Line 1</label>
+                    <input asp-for="AddressLine1" class="form-control" />
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Address Line 2</label>
+                    <input asp-for="AddressLine2" class="form-control" />
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Address Line 3</label>
+                    <input asp-for="AddressLine3" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Address Code</label>
+                    <input asp-for="AddressCode" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Postal Code</label>
+                    <input asp-for="PostalCode" class="form-control" />
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Postal Address 1</label>
+                    <input asp-for="PostalAddress1" class="form-control" />
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Postal Address 2</label>
+                    <input asp-for="PostalAddress2" class="form-control" />
+                </div>
+            </div>
+            <div class="d-flex justify-content-between mt-4">
+                <button type="button" class="btn btn-success px-4" onclick="saveInfo()">Save Info</button>
+                <button type="button" class="btn btn-outline-secondary px-4" onclick="document.getElementById('passwordModal').showModal();">Change Password</button>
+            </div>
+        </form>
+    </div>
+</div>
+<dialog id="passwordModal" class="rounded shadow p-4 border-0" style="max-width: 400px;">
+    <form method="dialog" onsubmit="event.preventDefault(); changePassword();">
+        <h5>Change Password</h5>
+        <input type="password" id="newPassword" class="form-control mb-3 mt-2" placeholder="New Password" required />
+        <div class="d-flex justify-content-end gap-2">
+            <button type="button" class="btn btn-secondary" onclick="this.closest('dialog').close();">Cancel</button>
+            <button type="submit" class="btn btn-warning">Update</button>
+        </div>
+    </form>
+</dialog>
+@section Scripts {
+    <script>
+        function saveInfo() {
+            fetch('/Info/UpdateInfo', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(new FormData(document.getElementById('infoForm')))
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) alert('Info updated!');
+                else alert('Update failed.');
+            });
+        }
+        function changePassword() {
+            fetch('/Info/UpdatePassword', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({
+                    personId: document.querySelector('[name="PersonId"]').value,
+                    newPassword: document.getElementById('newPassword').value
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) alert('Password updated!');
+                else alert('Password update failed.');
+                document.getElementById('passwordModal').close();
+            });
+        }
+    </script>
+}
